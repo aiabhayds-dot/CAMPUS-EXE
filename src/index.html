@@ -1,0 +1,70 @@
+<title>CAMPUS.EXE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="CAMPUS.EXE — a top-down campus-life adventure. You have one week. 47 things are due. Good luck.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap">
+<style>/*@@CSS@@*/</style>
+
+<canvas id="game" aria-label="CAMPUS.EXE game world"></canvas>
+
+<div id="hud" hidden>
+  <div class="clock"><span id="h-sun" class="sun s0"></span><div><div class="cl1"><b id="h-day">MON</b><span id="h-time">8:00 AM</span></div><div class="cl2"><span id="h-slot">Morning</span> · <span id="h-dayn">Day 1/7</span></div></div></div>
+  <div id="stats"></div>
+  <div id="deadline" hidden></div>
+</div>
+<div id="side" hidden><canvas id="mini" width="240" height="176"></canvas><div id="roomname"></div><div id="obj"></div></div>
+<button id="pause-btn" hidden aria-label="Pause">II</button>
+
+<div id="notifs"></div>
+<div id="loc"></div>
+<div id="hint" hidden></div>
+
+<div id="dlg" hidden>
+  <div class="por"><canvas id="dlg-por" width="120" height="120"></canvas></div>
+  <div class="dbody"><div id="dlg-name"></div><div id="dlg-text"></div><div id="dlg-choices" hidden></div><div id="dlg-next" hidden>&#9660;</div></div>
+</div>
+
+<div id="skip" hidden><div class="clockic"><i></i><i></i></div><div><div id="skip-l"></div><div class="sk2"><b id="skip-t"></b><span id="skip-p"></span></div></div></div>
+
+<div id="card" class="overlay" hidden><div id="card-n"></div><div id="card-d"></div><div id="card-t"></div><div id="card-s"></div></div>
+
+<div id="popup" class="overlay" hidden><div class="pbox"><div id="popup-body"></div><button id="popup-btn">Continue</button></div></div>
+
+<div id="pause" class="overlay" hidden><div class="pmenu"><h2 id="pause-title">PAUSED</h2><div id="pause-info" hidden></div><div id="pause-menu"></div></div></div>
+
+<div id="title" class="overlay">
+  <div class="logo">CAMPUS<span>.EXE</span></div>
+  <p class="tag">You have <b>one week</b>. <b>47 things</b> are due. Good luck.</p>
+  <div class="tbtns">
+    <button class="tbtn" id="btn-new">New Game</button>
+    <button class="tbtn alt" id="btn-cont" hidden>Continue</button>
+    <button class="tbtn alt" id="btn-how">How to play</button>
+  </div>
+  <div id="how" hidden>
+    <p><kbd>WASD</kbd> / <kbd>Arrows</kbd> walk · <kbd>Shift</kbd> run</p>
+    <p><kbd>E</kbd> / <kbd>Space</kbd> talk, interact, advance · <kbd>1-4</kbd> choices</p>
+    <p><kbd>Esc</kbd> pause · <kbd>M</kbd> minimap</p>
+    <p>Survive Monday to Sunday. Attend class, eat, sleep, help friends, finish the assignment, pass the quiz and the final. Every choice changes your ending.</p>
+  </div>
+  <div class="hint2">Best with sound on · Press E to start</div>
+</div>
+
+<div id="create" class="overlay" hidden>
+  <h2>Who are you this semester?</h2>
+  <div class="namebox"><label for="pname">YOUR NAME</label><input id="pname" maxlength="14" placeholder="Type your name" autocomplete="off" spellcheck="false"></div>
+  <div class="perss">
+    <button class="pers" data-p="owl"><canvas width="96" height="96" data-p="owl"></canvas><div><h3>Night Owl</h3><p>Productive at 3 AM. Unconscious at 9 AM.</p><div class="mods"><span class="d">ENERGY &minus;</span><span class="u">SOCIAL +</span></div></div></button>
+    <button class="pers" data-p="topper"><canvas width="96" height="96" data-p="topper"></canvas><div><h3>Topper Wannabe</h3><p>Highlighters in four colours. Friends in zero.</p><div class="mods"><span class="u">ACADEMICS +</span><span class="d">SOCIAL &minus;</span></div></div></button>
+    <button class="pers" data-p="broke"><canvas width="96" height="96" data-p="broke"></canvas><div><h3>Broke but Popular</h3><p>Knows everyone. Owes everyone.</p><div class="mods"><span class="d">MONEY &minus;&minus;</span><span class="u">SOCIAL ++</span></div></div></button>
+  </div>
+  <div class="cbtns"><button class="tbtn alt" id="btn-back" style="width:auto">Back</button><button class="tbtn" id="btn-start" style="width:auto">Start Monday &rarr;</button></div>
+</div>
+
+<div id="wrapped" class="overlay" hidden><div id="w-slide" class="w-slide"></div><div class="wnav"><button id="w-prev">Back</button><div id="w-dots"></div><button id="w-next">Next</button></div></div>
+
+<div id="gameover" class="overlay" hidden><canvas id="go-cv" width="480" height="300"></canvas><h1 id="go-title">DEBARRED</h1><p id="go-line"></p><div><button id="go-again">Try again</button><button id="go-title-btn">Title</button></div></div>
+
+<div id="touch" hidden><div id="stick"><div id="knob"></div></div><button id="abtn" aria-label="Interact">A</button></div>
+
+<script>/*@@JS@@*/</script>
