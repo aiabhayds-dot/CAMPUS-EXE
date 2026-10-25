@@ -167,8 +167,14 @@ kbd { font-family: var(--f-label); font-size: .78em; background: var(--cream); c
 #pause-menu button.sel { background: var(--marigold); color: #1b1e3b; }
 
 /* ---------- title ---------- */
-#title { flex-direction: column; background: radial-gradient(ellipse at 50% 40%, rgba(14, 16, 36, .35), rgba(14, 16, 36, .88) 75%); text-align: center; gap: 10px; }
-.logo { font-size: clamp(56px, 13vw, 132px); font-weight: 700; line-height: .9; color: var(--cream); letter-spacing: .01em; text-shadow: 4px 4px 0 var(--marigold), 8px 8px 0 var(--rose), 12px 12px 0 #2a1430; animation: logo 3s ease-in-out infinite; }
+/* ---------- title ---------- */
+#title { 
+  flex-direction: column; 
+  background: radial-gradient(ellipse at 50% 40%, rgba(14, 16, 36, .35), rgba(14, 16, 36, .88) 75%), url('Code_Generated_Image.gif') center / cover no-repeat; 
+  text-align: center; 
+  gap: 10px; 
+  image-rendering: pixelated; /* Keeps pixel-art GIFs sharp */
+}.logo { font-size: clamp(56px, 13vw, 132px); font-weight: 700; line-height: .9; color: var(--cream); letter-spacing: .01em; text-shadow: 4px 4px 0 var(--marigold), 8px 8px 0 var(--rose), 12px 12px 0 #2a1430; animation: logo 3s ease-in-out infinite; }
 .logo span { color: var(--marigold); text-shadow: 4px 4px 0 var(--cream), 8px 8px 0 var(--rose), 12px 12px 0 #2a1430; }
 @keyframes logo { 50% { transform: translateY(-6px) rotate(-.6deg); } }
 .tag { font-size: clamp(16px, 2.4vw, 22px); color: var(--cream); margin: 12px 0 0; text-shadow: 2px 2px 0 #0b0d1c; text-wrap: balance; }
