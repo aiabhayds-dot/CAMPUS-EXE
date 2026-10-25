@@ -801,11 +801,11 @@ function fillTokens(s) {
 
 /* ---------- Professors & courses (fictional) ---------- */
 const PROFS = {
-  sharma: { name: 'Prof. R.K. Sharma', look: 'prof', strict: 0.24, catch: 'very easy' },
+  Yogi: { name: 'Prof. R.K. Yogi', look: 'prof', strict: 0.24, catch: 'very easy' },
   iyer:   { name: 'Dr. Meenakshi Iyer', look: 'iyer', strict: 0.12, catch: 'trivially follows' },
 };
 const COURSES = {
-  SIG: { code: 'SIG-201', name: 'Signals & Systems',        prof: 'sharma', start: 540, dur: 90, subject: 'sig' },
+  SIG: { code: 'SIG-201', name: 'Signals & Systems',        prof: 'Yogi', start: 540, dur: 90, subject: 'sig' },
   MTH: { code: 'MTH-202', name: 'Probability & Statistics', prof: 'iyer',   start: 840, dur: 75, subject: 'mth' },
 };
 const SUBJECT_NAMES = { sig: 'Signals & Systems', mth: 'Probability & Stats' };
@@ -949,7 +949,7 @@ const DLG = {
     [['A', 'Bro, assignment kiska hua?'], ['B', 'Mera "almost" ho gaya.'], ['A', 'Almost matlab?'], ['B', 'File ka naam rakh diya.']],
     [['A', 'Mess mein aaj kya hai?'], ['B', 'Mystery Sabzi.'], ['A', 'Kal bhi wahi tha.'], ['B', 'Kal ki mystery solve nahi hui. Sequel hai.']],
     [['A', 'Tu NSO jaata hai?'], ['B', 'Jaata hoon. Khelta nahi. Attendance lagta hai.'], ['A', 'Proxy NSO mein bhi?'], ['B', 'Coach sab ginta hai. Sab.']],
-    [['A', 'Sharma sir ne "very easy" bola.'], ['B', 'Kitni baar?'], ['A', 'Ginti chhod di. Chhati baar ke baad.']],
+    [['A', 'Yogi sir ne "very easy" bola.'], ['B', 'Kitni baar?'], ['A', 'Ginti chhod di. Chhati baar ke baad.']],
     [['A', 'Wi-Fi gaya phir se.'], ['B', 'Library jaa.'], ['A', 'Wahan Wi-Fi hai?'], ['B', 'Nahi. Par wahan sab dukhi hain. Company milegi.']],
     [['A', 'Thomso pass liya?'], ['B', 'Volunteer ban gaya. Free pass, free food, free trauma.']],
     [['A', 'Kal raat 4 baje soya.'], ['B', 'Padhai?'], ['A', 'Nahi. Ek reel dekhi thi "how to sleep early".']],
@@ -988,18 +988,18 @@ const DLG = {
   },
   /* professor intros/outros */
   profOutro: {
-    sharma: ['That is all. It was very easy.', 'Next class, we do the hard part. It is also very easy.', 'Read chapter four. All of it. It is short. Forty pages.', 'Any questions? No? Very easy then.'],
+    Yogi: ['That is all. It was very easy.', 'Next class, we do the hard part. It is also very easy.', 'Read chapter four. All of it. It is short. Forty pages.', 'Any questions? No? Very easy then.'],
     iyer: ['That concludes today. The rest trivially follows.', 'Practise ten problems. The eleventh trivially follows.', 'If you understood nothing, that is statistically normal.', 'See you next class. Probability of a quiz: non-zero.'],
   },
   profIntro: {
-    sharma: ['Good morning. Settle down. Phones away. Souls present.', 'Sit, sit. Today is very easy. Like always.', 'Good morning. I see fewer faces than yesterday. Thomso, very easy to guess.'],
+    Yogi: ['Good morning. Settle down. Phones away. Souls present.', 'Sit, sit. Today is very easy. Like always.', 'Good morning. I see fewer faces than yesterday. Thomso, very easy to guess.'],
     iyer: ['Good afternoon. Let us begin with an assumption: you are awake.', 'Settle down. Today\'s topic is beautiful. You will disagree.', 'Afternoon. Phones face-down. Probabilities face-up.'],
   },
   /* senior-junior lines */
   seniorCall: ['Oye junior! Haan tum, jo map dekh ke chal rahe ho. Idhar aao.', 'Fresher spotted! Aao aao, darr kyun rahe ho? Hum log cute hain.', 'Ek aur junior! Line mein aao, intro ka time hai.'],
   seniorQ: [
     { q: 'Tell us something about yourself. Something interesting. Not your JEE rank.', a: [['I can eat Maggi in 47 seconds. Timed.', 'fun'], ['I\'m from {L:hostel}. I know where the cooler is. That\'s power.', 'conf'], ['I... uh... exist? Mostly?', 'awk']] },
-    { q: 'Hidden talent? Kuch toh hoga.', a: [['I can sleep with my eyes open. In lectures. Undetected.', 'fun'], ['I can name all nine of Sharma sir\'s "very easy"s.', 'conf'], ['Hiding. My talent is hidden. Even from me.', 'awk']] },
+    { q: 'Hidden talent? Kuch toh hoga.', a: [['I can sleep with my eyes open. In lectures. Undetected.', 'fun'], ['I can name all nine of Yogi sir\'s "very easy"s.', 'conf'], ['Hiding. My talent is hidden. Even from me.', 'awk']] },
     { q: 'What will you contribute to this hostel?', a: [['A working extension board. Rare. Valuable.', 'conf'], ['Snacks from home. My mom packs for a battalion.', 'fun'], ['Emotional support? And noise complaints?', 'awk']] },
     { q: 'Why should we give YOU Chapo?', a: [['Because I\'ll give Chapo to my juniors next year. Circle of life.', 'conf'], ['Because I am hungry, and you look generous.', 'fun'], ['You shouldn\'t. I\'m not even sure I should be here.', 'awk']] },
     { q: 'Morning person or professional snooze-button user?', a: [['I snooze professionally. Certified. Nine times.', 'fun'], ['Morning person. I wake up at 6. Then sleep till 9.', 'conf'], ['What is morning?', 'awk']] },
@@ -2911,7 +2911,7 @@ const Chase = {
     h.state = 'active'; h.phase = 'ready'; h.strikes = 0; h.lastDay = S.day; h.n++;
     AU.play('tense'); AU.sfx('alarm'); shake(3);
     UI.warn('EMERGENCY HEADCOUNT!', 'Professor is checking who\'s actually here. Get to the lecture hall!', 'urgent');
-    const pid = S.day % 2 ? 'iyer' : 'sharma';
+    const pid = S.day % 2 ? 'iyer' : 'Yogi';
     h.prof = pid;
     await say('phone', Rng.pick([
       `Class Group · CR: 🚨 EMERGENCY HEADCOUNT 🚨 ${PROFS[pid].name} is counting heads in {L:lecture} RIGHT NOW. Proxy wale BHAAGO.`,
@@ -2989,14 +2989,14 @@ const Chase = {
     S.pendingSave = true;
   },
   async win() {
-    const h = S.hc, p = PL(), s = this.seat(), pid = h.prof || 'sharma';
+    const h = S.hc, p = PL(), s = this.seat(), pid = h.prof || 'Yogi';
     p.x = s.x; p.y = s.y + 8; p.pose = 'sit'; p.dir = 'up'; p.moving = false;
     const prof = G.actorById('prof');
     if (prof) { prof.dir = 'down'; prof.pose = 'stand'; }
     await wait(0.4);
     for (const n of ['...forty-six', 'forty-seven', `forty-eight. ${S.name}?`]) { if (prof) bubble(prof, n, 1.1); AU.sfx('blip', 0.65); await wait(1.0); }
     p.pose = 'raise'; bubble(p, '(gasp) ...pre-present!', 1.3); await wait(1.1); p.pose = 'sit';
-    await say(pid, pid === 'sharma' ? 'Everyone is here. Hmm. Statistically impossible. Very... easy? No. Suspicious.' : 'Full attendance. The probability of that was low. I will be updating my priors.', 'sus');
+    await say(pid, pid === 'Yogi' ? 'Everyone is here. Hmm. Statistically impossible. Very... easy? No. Suspicious.' : 'Full attendance. The probability of that was low. I will be updating my priors.', 'sus');
     for (const a of G.actors) if (a.pose === 'sit' && a !== p && chance(0.6)) emote(a, 'haha', 1.2);
     emote(p, 'sweat', 1.4);
     await say('me', Rng.pick(['(breathing like I ran a marathon) Nailed it. Nobody look at me.', 'My lungs are on fire. My attendance is not. Worth it.', 'I will never proxy again. (I will.)']), 'happy');
@@ -3008,7 +3008,7 @@ const Chase = {
     await fadeOut(0.5); p.pose = 'stand'; p.x = 394; p.y = 232; populate(); await fadeIn(0.5);
   },
   async lose(why) {
-    const h = S.hc, pid = h.prof || 'sharma', p = PL();
+    const h = S.hc, pid = h.prof || 'Yogi', p = PL();
     const back = { map: G.map.id, x: p.x, y: p.y };
     clearSprint();
     if (why === 'seen') {
@@ -3627,8 +3627,8 @@ const CH = {
   rahul: { name: 'Rahul', look: () => LOOKS.rahul, pitch: 1.05, bg: '#f08a24' },
   kabir: { name: 'Kabir', look: () => LOOKS.kabir, pitch: 0.85, bg: '#6b4fa0' },
   priya: { name: 'Priya', look: () => LOOKS.priya, pitch: 1.4, bg: '#e8566f' },
-  prof: { name: 'Prof. R.K. Sharma', look: () => LOOKS.prof, pitch: 0.65, bg: '#8a6a4a' },
-  sharma: { name: 'Prof. R.K. Sharma', look: () => LOOKS.prof, pitch: 0.65, bg: '#8a6a4a' },
+  prof: { name: 'Prof. R.K. Yogi', look: () => LOOKS.prof, pitch: 0.65, bg: '#8a6a4a' },
+  Yogi: { name: 'Prof. R.K. Yogi', look: () => LOOKS.prof, pitch: 0.65, bg: '#8a6a4a' },
   iyer: { name: 'Dr. Meenakshi Iyer', look: () => LOOKS.iyer, pitch: 1.1, bg: '#2f6f6a' },
   coach: { name: 'Coach Thapa', look: () => LOOKS.coach, pitch: 0.8, bg: '#e2533d' },
   bhaiya: { name: 'Pappu Bhaiya', look: () => LOOKS.bhaiya, pitch: 0.75, bg: '#c9583a' },
@@ -4341,7 +4341,7 @@ function A(id) { return G.actorById(id); }
 const sec = (h, m = 0) => h * 60 + m;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-const CAMPUS_CHAT = ['Bro I\'m 5 minutes away. (He is in bed.)', 'Assignment kiska hua?', 'Who even reads the syllabus?', 'Mess mein aaj kya hai?', 'My code works. I don\'t know why.', 'Sharma sir said "very easy" again', 'Wi-Fi is down. Again.', 'Proxy laga dena kal, pakka', 'Group project = solo project', 'Bhai notes bhej de', 'Canteen chalein?', 'I studied for 10 minutes. I deserve a break.', 'NSO at 5:30? Who schedules sport at 5:30?', 'Final syllabus is "everything". Cool.'];
+const CAMPUS_CHAT = ['Bro I\'m 5 minutes away. (He is in bed.)', 'Assignment kiska hua?', 'Who even reads the syllabus?', 'Mess mein aaj kya hai?', 'My code works. I don\'t know why.', 'Yogi sir said "very easy" again', 'Wi-Fi is down. Again.', 'Proxy laga dena kal, pakka', 'Group project = solo project', 'Bhai notes bhej de', 'Canteen chalein?', 'I studied for 10 minutes. I deserve a break.', 'NSO at 5:30? Who schedules sport at 5:30?', 'Final syllabus is "everything". Cool.'];
 const CANTEEN_CHAT = ['Ye dal hai ya paani?', 'Bhaiya, ek chai. Udhaar.', 'This sabzi has trust issues.', 'Maggi is a food group.', 'Who puts elaichi in Maggi?', 'Came for samosa, stayed for Wi-Fi.', 'Roti ya papad? Hard to tell.', 'Bhaiya, extra chutney please'];
 const LIB_CHAT = ['(whisper) Is this in the syllabus?', '(whisper) Read this page 9 times.', '(whisper) Bro. Wake up.', '(whisper) Library Wi-Fi hits different.', '(whisper) Where is chapter 7?'];
 const FEST_CHAT = DLG.fest;
@@ -4353,13 +4353,13 @@ const NOTIFS = [
   ['Class Group', 'Anyone has notes?? (0 replies)'],
   ['Hostel Gang', 'Kabir: who ate my Maggi. I will find you.'],
   ['CampusGram', 'Priya posted: "Day 4 of studying. Sanity: 12%"'],
-  ['Class Group', 'Fwd: "Sharma sir says paper will be VERY EASY"'],
+  ['Class Group', 'Fwd: "Yogi sir says paper will be VERY EASY"'],
   ['Dad', 'How is studies. Call when free. Ok.'],
   ['Hostel Gang', 'Rahul: anyone up for night canteen? (it is 11 AM)'],
   ['Food App', 'Feeling hungry? So is your wallet.'],
   ['NSO', 'Reminder: sports shoes, not slippers. Looking at you.'],
 ];
-const BOOKS = ['"Thermodynamics: A Love Story"', '"How to Survive on Maggi" (3rd edition)', '"Proxy: The Art of Being in Two Places"', '"Data Structures for People Who Hate Data"', '"Assignments & Other Horror Stories"', '"Very Easy Calculus" by R.K. Sharma', '"Sleep Is For The Weak (Revised: Please Sleep)"', '"1001 Excuses for Late Submission"', '"Fourier Series: Sines You Can\'t Ignore"', '"It Trivially Follows" by M. Iyer'];
+const BOOKS = ['"Thermodynamics: A Love Story"', '"How to Survive on Maggi" (3rd edition)', '"Proxy: The Art of Being in Two Places"', '"Data Structures for People Who Hate Data"', '"Assignments & Other Horror Stories"', '"Very Easy Calculus" by R.K. Yogi', '"Sleep Is For The Weak (Revised: Please Sleep)"', '"1001 Excuses for Late Submission"', '"Fourier Series: Sines You Can\'t Ignore"', '"It Trivially Follows" by M. Iyer'];
 
 const CLASSMATES = [
   { id: 'aman', name: 'Aman', seat: [0, 0] }, { id: 'ishita', name: 'Ishita', seat: [0, 1] }, { id: 'bhavna', name: 'Bhavna', seat: [0, 5] },
@@ -4446,7 +4446,7 @@ const Story = {
         out.push(st(161, { x: T(34), y: T(30), dir: 'up', pose: 'paint', name: 'Volunteer', chatter: ['Lights test in 5 minutes. (2 hours)'] }));
         if (!S.flags.volunteerDone) out.push({ id: 'priya', name: 'Priya', look: LOOKS.priya, x: T(32), y: T(37) + 8, dir: 'down', talk: () => Story.priyaVolunteer() });
         if (S.rnd.meera && !S.flags.metMeera && sl >= 2) out.push({ id: 'meera', name: 'Meera', look: LOOKS.meera, x: T(36), y: T(36), dir: 'left', pose: 'guitar', talk: () => Story.meera() });
-        if (sl === 1 && S.flags.idFound && S.flags.idKeep === 'return' && !S.flags.idReturned) out.push({ id: 'prof', name: 'Prof. Sharma', look: LOOKS.prof, x: T(47), y: T(15), dir: 'down', talk: () => Story.returnID() });
+        if (sl === 1 && S.flags.idFound && S.flags.idKeep === 'return' && !S.flags.idReturned) out.push({ id: 'prof', name: 'Prof. Yogi', look: LOOKS.prof, x: T(47), y: T(15), dir: 'down', talk: () => Story.returnID() });
       }
       // Thomso days
       if (fest === 2 && sl >= 1) {
@@ -4489,7 +4489,7 @@ const Story = {
       }
       if (hasTag('suspicion') && sl <= 1 && Sched.rec(0) && !(S.ice && S.ice.state !== 'none' && S.ice.state !== 'done')) out.push({ id: 'rahul', name: 'Rahul', look: LOOKS.rahul, x: T(30), y: T(18) + 8, dir: 'down', talk: () => Story.rahulGeneric() });
       // professor walking near the lecture hall (lost ID card)
-      if (sl === 1 && S.flags.idFound && S.flags.idKeep === 'return' && !S.flags.idReturned) out.push({ id: 'prof', name: 'Prof. Sharma', look: LOOKS.prof, x: T(47), y: T(15), dir: 'down', talk: () => Story.returnID() });
+      if (sl === 1 && S.flags.idFound && S.flags.idKeep === 'return' && !S.flags.idReturned) out.push({ id: 'prof', name: 'Prof. Yogi', look: LOOKS.prof, x: T(47), y: T(15), dir: 'down', talk: () => Story.returnID() });
       // Day 2 icebreaking at the fountain lawn
       if (hasTag('icebreak') && t >= ICEBREAK.start - 30 && t < ICEBREAK.end && S.ice.state !== 'done') {
         SENIORS.forEach((sn, i) => out.push({ id: sn.id, name: sn.name, look: sn.look, x: sn.x, y: sn.y, dir: 'down', talk: () => Story.iceTalk() }));
@@ -4514,7 +4514,7 @@ const Story = {
       const ci = Sched.inSession();
       if (Chase.active() && S.hc.phase === 'stealth') {
         CLASSMATES.forEach((cm, i) => { const p = seatPos(cm.seat[0], cm.seat[1]); out.push({ id: cm.id, name: cm.name, look: studentLook(300 + i), x: p.x, y: p.y, dir: 'up', pose: 'sit', solid: false }); });
-        const pid = S.hc.prof || 'sharma';
+        const pid = S.hc.prof || 'Yogi';
         out.push({ id: 'prof', name: PROFS[pid].name, look: profLook(pid), x: 208, y: 50, dir: 'up', pose: 'point', solid: false });
         out.push({ id: 'hcseat', name: '', look: null, x: Chase.seat().x, y: Chase.seat().y + 2, solid: false, sortY: 0, drawFn: (c, a, tt) => { const k = (Math.sin(tt * 6) + 1) / 2; c.fillStyle = `rgba(255,214,63,${0.25 + k * 0.35})`; c.beginPath(); c.ellipse(a.x, a.y, 9, 4, 0, 0, 7); c.fill(); } });
         return out;
@@ -4527,7 +4527,7 @@ const Story = {
         list.forEach((cm, i) => { const p = seatPos(cm.seat[0], cm.seat[1]); out.push({ id: cm.id, name: cm.name, look: studentLook(300 + i), x: p.x, y: p.y, dir: 'up', pose: 'sit', solid: false }); });
         const pp = seatPos(0, 3); out.push({ id: 'priya', name: 'Priya', look: LOOKS.priya, x: pp.x, y: pp.y, dir: 'up', pose: 'sit', solid: false });
         if (this.rahulInClass(ci)) { const rp = seatPos(2, 2); out.push({ id: 'rahul', name: 'Rahul', look: LOOKS.rahul, x: rp.x, y: rp.y, dir: 'up', pose: 'sit', solid: false }); }
-        const pid = c.course === 'ALL' ? 'sharma' : COURSES[c.course].prof;
+        const pid = c.course === 'ALL' ? 'Yogi' : COURSES[c.course].prof;
         const firstEver = hasTag('intro') && ci === 0 && !S.flags.introProfIn;
         if (!firstEver) out.push({ id: 'prof', name: PROFS[pid].name, look: profLook(pid), x: MAPS.lecture.profSpot.x, y: MAPS.lecture.profSpot.y - 8, dir: 'down', solid: false });
       } else if (sl <= 1) {
@@ -4674,7 +4674,7 @@ const Story = {
     p.pose = 'stretch'; p.expr = 'sleep'; emote(p, '...', 1.4); AU.sfx('whoosh');
     await wait(1.5);
     p.pose = 'tired'; p.expr = 'tired';
-    await say('me', '8:40?! SIG-201 is at 9! Sharma sir\'s class!', 'shock');
+    await say('me', '8:40?! SIG-201 is at 9! Yogi sir\'s class!', 'shock');
     await say('me', 'The semester started four minutes ago and I\'m already losing.', 'tired');
     const k = A('kabir');
     await say('kabir', 'Tu 75% attendance pe hai, right? Live life on the edge, bro.', 'sleep');
@@ -4697,7 +4697,7 @@ const Story = {
     r.expr = 'tired'; emote(r, 'sweat');
     await say('rahul', 'Bro, proxy laga de. Bas aaj ki attendance bacha le.', 'tired');
     await say('rahul', 'Kal raat 4 baje tak padhai ki. Matlab... reels. Educational reels.', 'normal');
-    let c = await ask('rahul', 'Sharma sir ki class. Bol na bhai, please? Roll number 42.', ['Theek hai, bas aaj.', 'Nahi bhai, Sharma sir pakad lenge.', 'Kya milega mujhe?']);
+    let c = await ask('rahul', 'Yogi sir ki class. Bol na bhai, please? Roll number 42.', ['Theek hai, bas aaj.', 'Nahi bhai, Yogi sir pakad lenge.', 'Kya milega mujhe?']);
     if (c === 2) {
       r.expr = 'happy';
       await say('rahul', 'Canteen pe samosa. Do samose. Plus lifetime dosti. Final offer.', 'happy');
@@ -4762,7 +4762,7 @@ const Story = {
     let credit = 1, status = 'attended';
     if (late > ATT_RULES.lateGrace) {
       prof.expr = 'sus'; emote(prof, 'sus');
-      await say(pid, `${S.name}. ${late} minutes late. ${pid === 'sharma' ? 'Punctuality is very easy.' : 'Lateness, it trivially follows, is absence.'}`, 'sus');
+      await say(pid, `${S.name}. ${late} minutes late. ${pid === 'Yogi' ? 'Punctuality is very easy.' : 'Lateness, it trivially follows, is absence.'}`, 'sus');
       const c2 = await ask('me', 'Every head turns toward the door. And you.', ['Apologise: "Sorry, traffic."', 'Sneak to the back row like a ninja', 'Leave quietly (counts as skipped)']);
       if (c2 === 2) { prof.expr = 'normal'; return this.leaveClass(i, px); }
       if (c2 === 0) { await say(pid, 'Traffic. Inside the campus. Sit. You are marked late, which means absent. But learn something.', 'sus'); credit = 0; status = 'late-absent'; }
@@ -4773,7 +4773,7 @@ const Story = {
       }
       prof.expr = 'normal';
     } else if (late > 3) {
-      await say(pid, `${S.name}, you are ${late} minutes late. Sit. ${pid === 'sharma' ? 'Quickly. Very easily.' : 'Quietly.'}`, 'sus');
+      await say(pid, `${S.name}, you are ${late} minutes late. Sit. ${pid === 'Yogi' ? 'Quickly. Very easily.' : 'Quietly.'}`, 'sus');
       status = 'late';
     }
     if (late <= 6) await this.rollCall(i, prof, k === 'proxy' ? px : null, pid);
@@ -4788,7 +4788,7 @@ const Story = {
     else if (nd && nd.tags.includes('deadline')) outro = 'Assignment 1 is due on Saturday, 11:59 PM. No extensions. Not even for Thomso.';
     else if (S.day + 2 === SEM_DAYS - 1 || S.day + 1 === SEM_DAYS - 1) outro = 'Final exam on Sunday, 10 AM. Everything is in the syllabus. Everything.';
     await say(pid, outro);
-    if (pid === 'sharma') S.counters.veryEasy++; else S.counters.trivially++;
+    if (pid === 'Yogi') S.counters.veryEasy++; else S.counters.trivially++;
     stat({ acad: 2, energy: -6 });
     Att.record(Sched.key(i), status, credit);
     if (credit) Tasks.done('cls' + i); else Tasks.fail('cls' + i);
@@ -4822,7 +4822,7 @@ const Story = {
     spawn({ id: 'bunk1', name: 'Kunal', look: studentLook(305), x: tb[0] + 40, y: tb[1] - 12, dir: 'down', pose: 'eat', solid: false });
     G.camTarget = { x: 130, y: 160 };
     await fadeIn(0.5);
-    await say({ name: 'Kunal', look: studentLook(305) }, pick(['Welcome to the bunkers\' club. Membership: everyone, eventually.', 'Bro, Sharma sir is probably saying "very easy" right now. I can feel it.', 'I\'ll copy notes from Priya. She\'ll say no. I\'ll ask again.']));
+    await say({ name: 'Kunal', look: studentLook(305) }, pick(['Welcome to the bunkers\' club. Membership: everyone, eventually.', 'Bro, Yogi sir is probably saying "very easy" right now. I can feel it.', 'I\'ll copy notes from Priya. She\'ll say no. I\'ll ask again.']));
     if (px && px.state !== 'refused') { UI.notify('Hostel Gang', `${px.name}: bro YOU bunked too?! Who is giving my proxy??`); rel(px.from, -3); Tasks.fail(px.task); }
     await UI.timeSkip('Bunking at the canteen...', Math.max(30, c.start + c.dur - S.time), 'eat');
     stat({ social: 5, energy: 4, money: -4 }); S.counters.samosa++;
@@ -4855,13 +4855,13 @@ const Story = {
 
   async rollCall(i, prof, px, pid) {
     const p = PL();
-    if (hasTag('suspicion') && pid === 'sharma' && S.proxyCount > 0) {
+    if (hasTag('suspicion') && pid === 'Yogi' && S.proxyCount > 0) {
       prof.expr = 'sus';
       await say(pid, 'Yesterday, someone was present in two places at once. Quantum attendance.', 'sus');
       emote(prof, 'sus', 2); await say(pid, `I am watching you, ${S.name}. Very closely. Very easily.`, 'sus'); emote(p, 'sweat', 2);
       prof.expr = 'normal'; S.flags.profSus = true;
     }
-    await say(pid, Rng.pick(pid === 'sharma' ? ['Attendance. And no one answers for anyone else. I have ears.', 'Roll call. One body, one voice. Very easy rule.', 'Attendance. I know every voice in this room. Every. Voice.'] : ['Roll call. One voice per person, please. I have studied voices statistically.', 'Attendance. I will be listening for... anomalies.', 'Roll call. Proxies are a hypothesis I enjoy rejecting.']));
+    await say(pid, Rng.pick(pid === 'Yogi' ? ['Attendance. And no one answers for anyone else. I have ears.', 'Roll call. One body, one voice. Very easy rule.', 'Attendance. I know every voice in this room. Every. Voice.'] : ['Roll call. One voice per person, please. I have studied voices statistically.', 'Attendance. I will be listening for... anomalies.', 'Roll call. Proxies are a hypothesis I enjoy rejecting.']));
     const names = [['aman', 'Aman Gupta', 'Yes sir!'], ['bhavna', 'Bhavna Rao', 'Present ma\'am!'], ['neha', 'Neha Joshi', 'Present!'], ['dev', 'Dev Malhotra', 'Yes!'], ['tanvi', 'Tanvi Shah', 'Present.']];
     const [a, b] = BagN('rollnames', names, 2);
     await this.roll(prof, a[1], A(a[0]), a[2]);
@@ -4961,17 +4961,17 @@ const Story = {
     await walk(prof, [[208, 50]], 40); face(prof, 'up');
     for (let k = 1; k <= 9; k++) { G.board = k; AU.sfx('write'); await wait(0.2); }
     face(prof, 'down');
-    if (pid === 'sharma') { await say(pid, `Today: ${topic}. Integrate from minus infinity to plus infinity. It is very easy.`); S.counters.veryEasy++; }
+    if (pid === 'Yogi') { await say(pid, `Today: ${topic}. Integrate from minus infinity to plus infinity. It is very easy.`); S.counters.veryEasy++; }
     else { await say(pid, `Today: ${topic}. Once you accept the assumptions, everything trivially follows.`); S.counters.trivially++; }
     for (const cm of CLASSMATES) { const a = A(cm.id); if (a && chance(0.6)) emote(a, pick(['?', '?', '...', 'sweat', 'z']), 2.2); }
-    if (festLevel() === 2) await say(pid, Rng.pick(pid === 'sharma' ? ['I see Thomso on your faces. Mostly the dark circles.', 'Half the class is missing. The other half is asleep. Very easy to teach.'] : ['Attendance is low. Thomso, I assume. The probability of you passing is also low.', 'I count glitter on 14 faces. Correlation with Pronite: strong.']));
-    if (hasTag('suspicion') && pid === 'sharma') await this.popQuestion(prof, pid);
-    if (hasTag('project') && pid === 'sharma') await this.projectGroups(pid);
+    if (festLevel() === 2) await say(pid, Rng.pick(pid === 'Yogi' ? ['I see Thomso on your faces. Mostly the dark circles.', 'Half the class is missing. The other half is asleep. Very easy to teach.'] : ['Attendance is low. Thomso, I assume. The probability of you passing is also low.', 'I count glitter on 14 faces. Correlation with Pronite: strong.']));
+    if (hasTag('suspicion') && pid === 'Yogi') await this.popQuestion(prof, pid);
+    if (hasTag('project') && pid === 'Yogi') await this.projectGroups(pid);
     await wait(0.6);
     const tired = S.exhausted || S.stats.energy < 12;
     const opts = [{ t: 'Nod confidently like you understand.', k: 'nod' }, { t: 'Actually take notes.', hint: tired ? 'too tired' : '+Academics', dis: tired, k: 'notes' }, { t: 'Sleep with your eyes open.', hint: '+Energy', k: 'sleep' }];
     const ch = opts[await ask('me', `${PROFS[pid].name.split(' ').slice(-1)[0]} looks directly at you, expecting understanding.`, opts)].k;
-    if (ch === 'nod') { emote(p, '!', 1); await say(pid, pid === 'sharma' ? 'Good. See? Very easy. Nobody understands, but everyone nods.' : 'Excellent. Nodding is a sufficient statistic.'); stat({ social: 2, acad: 1 }); S.counters.nods++; }
+    if (ch === 'nod') { emote(p, '!', 1); await say(pid, pid === 'Yogi' ? 'Good. See? Very easy. Nobody understands, but everyone nods.' : 'Excellent. Nodding is a sufficient statistic.'); stat({ social: 2, acad: 1 }); S.counters.nods++; }
     else if (ch === 'notes') { p.pose = 'write'; AU.sfx('write'); await wait(1.4); p.pose = 'sit'; stat({ acad: 5, energy: -4 }); S.counters.notes++; S.prep[co.subject] = clamp((S.prep[co.subject] || 0) + 4, 0, 100); }
     else { p.expr = 'sleep'; emote(p, 'z', 2); await wait(1.4); p.expr = 'normal'; if (chance(0.3)) { prof.expr = 'sus'; await say(pid, `${S.name}, are you meditating? This is not yoga class.`, 'sus'); prof.expr = 'normal'; } stat({ energy: 7 }); }
   },
@@ -5026,7 +5026,7 @@ const Story = {
     AU.play('tense');
     await walk(p, [[394, 238], [208, 238], [208, 158], [156, 158], [156, 166]], 80);
     p.pose = 'sit'; p.dir = 'up';
-    const prof = A('prof') || spawn({ id: 'prof', name: 'Prof. Sharma', look: LOOKS.prof, x: 208, y: 54, dir: 'down', solid: false });
+    const prof = A('prof') || spawn({ id: 'prof', name: 'Prof. Yogi', look: LOOKS.prof, x: 208, y: 54, dir: 'down', solid: false });
     G.camTarget = { x: 208, y: 130 };
     if (S.time < c.start) await UI.timeSkip('Waiting for the quiz to begin...', c.start - S.time, 'tick');
     const late = Math.max(0, S.time - c.start);
@@ -5085,8 +5085,8 @@ const Story = {
   async missQuiz(i) {
     S.lec[Sched.key(i)] = 'missed'; S.quiz = 0;
     Tasks.fail('cls' + i);
-    UI.warn('You missed the quiz.', 'Zero marks. Sharma sir calls it "very easy".', 'urgent');
-    await say('me', 'I missed the quiz. Sharma sir has awarded me a very easy zero.', 'shock');
+    UI.warn('You missed the quiz.', 'Zero marks. Yogi sir calls it "very easy".', 'urgent');
+    await say('me', 'I missed the quiz. Yogi sir has awarded me a very easy zero.', 'shock');
     stat({ acad: -6 });
     logd('Missed the surprise 8 AM quiz');
   },
@@ -5098,14 +5098,14 @@ const Story = {
     AU.play('tense');
     await walk(p, [[394, 238], [208, 238], [208, 158], [156, 158], [156, 166]], 80);
     p.pose = 'sit'; p.dir = 'up';
-    const pid = c.course === 'ALL' ? 'sharma' : COURSES[c.course].prof;
+    const pid = c.course === 'ALL' ? 'Yogi' : COURSES[c.course].prof;
     const prof = A('prof') || spawn({ id: 'prof', name: PROFS[pid].name, look: profLook(pid), x: 208, y: 54, dir: 'down', solid: false });
     G.camTarget = { x: 208, y: 130 };
     if (S.time < c.start) await UI.timeSkip('Waiting outside the exam hall...', c.start - S.time, 'tick');
     const late = Math.max(0, S.time - c.start) + (pen || 0);
-    if (kind === 'mte') await say(pid, pid === 'sharma' ? 'Mid-term examination. Two hours. Five questions. All very easy.' : 'Mid-term. Two hours. Every answer trivially follows from the previous one. So does every mistake.');
+    if (kind === 'mte') await say(pid, pid === 'Yogi' ? 'Mid-term examination. Two hours. Five questions. All very easy.' : 'Mid-term. Two hours. Every answer trivially follows from the previous one. So does every mistake.');
     else await say(pid, 'Final examination. One question. It has fourteen parts. Each part has sub-parts. It is very, very easy.');
-    if (pid === 'sharma') S.counters.veryEasy++; else S.counters.trivially++;
+    if (pid === 'Yogi') S.counters.veryEasy++; else S.counters.trivially++;
     for (const cm of CLASSMATES) { const a = A(cm.id); if (a) emote(a, pick(['!!', 'sweat', '...']), 2); }
     await walk(prof, [[208, 88]], 70);
     for (const row of [0, 1, 2, 3]) { const y = MAPS.lecture.rows[row]; await walk(prof, [[208, y - 22]], 90); for (let k = 0; k < 8; k++) G.papers.push({ x: MAPS.lecture.seatXs[k], y }); AU.sfx('whoosh'); await wait(0.2); }
@@ -5128,7 +5128,7 @@ const Story = {
       const marks = clamp(Math.round(raw * 0.3), 0, 30);
       S.mte[sub] = marks;
       const g = marks >= 24 ? 'A' : marks >= 18 ? 'B' : marks >= 12 ? 'C' : 'D';
-      await UI.popup(`<div class="paper"><div class="ph">MID-TERM EXAM · ${esc(COURSES[c.course].code)} ${esc(COURSES[c.course].name.toUpperCase())}</div><div class="pn">Name: <u>${esc(S.name)}</u> · Prep: ${Math.round(S.prep[sub] || 0)}%</div><div class="score">${marks}<small>/30</small></div><div class="grade">${g}</div><div class="pc">"${marks >= 20 ? (pid === 'sharma' ? 'Very easy, as predicted.' : 'Your understanding trivially follows.') : marks >= 12 ? 'Acceptable. Barely. Sleep more, panic less.' : 'We need to talk. Over chai. Bring a notebook.'}" — ${pid === 'sharma' ? 'R.K.S.' : 'M.I.'}</div></div>`, 'Breathe out', 'paperpop');
+      await UI.popup(`<div class="paper"><div class="ph">MID-TERM EXAM · ${esc(COURSES[c.course].code)} ${esc(COURSES[c.course].name.toUpperCase())}</div><div class="pn">Name: <u>${esc(S.name)}</u> · Prep: ${Math.round(S.prep[sub] || 0)}%</div><div class="score">${marks}<small>/30</small></div><div class="grade">${g}</div><div class="pc">"${marks >= 20 ? (pid === 'Yogi' ? 'Very easy, as predicted.' : 'Your understanding trivially follows.') : marks >= 12 ? 'Acceptable. Barely. Sleep more, panic less.' : 'We need to talk. Over chai. Bring a notebook.'}" — ${pid === 'Yogi' ? 'R.K.S.' : 'M.I.'}</div></div>`, 'Breathe out', 'paperpop');
       logd(`MTE ${COURSES[c.course].code}: ${marks}/30`);
       Tasks.done('cls' + i);
       await fadeOut(0.5);
@@ -5322,7 +5322,7 @@ const Story = {
     else await say('rahul', 'Notes? Bhai main khud tujhse maangne aaya tha.', 'tired');
   },
   async rahulGeneric() {
-    const lines = S.hc && S.hc.results.includes('won') ? ['Headcount mein tu wahan tha?! Bhai tu Flash hai.', 'Sir ne count kiya aur tu wahan tha. Legend. Main bhi aisa banna chahta hoon.'] : S.flags.caught ? ['Bhai... Sharma sir ne mujhe dekh ke "Hello, Rahul" bola. With a smile. I\'m scared.', 'We\'re famous now. Infamous. Same thing.'] :
+    const lines = S.hc && S.hc.results.includes('won') ? ['Headcount mein tu wahan tha?! Bhai tu Flash hai.', 'Sir ne count kiya aur tu wahan tha. Legend. Main bhi aisa banna chahta hoon.'] : S.flags.caught ? ['Bhai... Yogi sir ne mujhe dekh ke "Hello, Rahul" bola. With a smile. I\'m scared.', 'We\'re famous now. Infamous. Same thing.'] :
       S.proxyCount > 1 ? ['Proxy king! Tu legend hai.', 'Bhai tera deep voice viral hai group mein.'] :
       ['5 minute mein aa raha hoon. Matlab... main yahin hoon. Habit hai.', 'Samosa kha. Life ka purpose samajh aayega.', 'Kal se padhai. Pakka. Pinky promise.', 'NSO mein mujhe shuttle se darr lagta hai. Woh fast aata hai.'];
     await say('rahul', Bag('rahulGen' + lines.length, lines), 'happy');
@@ -5397,9 +5397,9 @@ const Story = {
   },
   async findID() {
     S.flags.idFound = true; AU.sfx('pop');
-    await say('sys', 'An ID card: "Dr. R.K. Sharma, Professor." The photo is from 1998. He had hair.');
-    const c = await ask('me', 'What do you do with it?', ['Return it to Sharma sir.', 'Post it in the group chat. For the memes.']);
-    if (c === 0) { S.flags.idKeep = 'return'; G.needRepop = true; UI.hint('Sharma sir walks near <b>{L:lecture}</b> in the afternoon.', 6); }
+    await say('sys', 'An ID card: "Dr. R.K. Yogi, Professor." The photo is from 1998. He had hair.');
+    const c = await ask('me', 'What do you do with it?', ['Return it to Yogi sir.', 'Post it in the group chat. For the memes.']);
+    if (c === 0) { S.flags.idKeep = 'return'; G.needRepop = true; UI.hint('Yogi sir walks near <b>{L:lecture}</b> in the afternoon.', 6); }
     else { S.flags.idKeep = 'meme'; S.flags.idReturned = true; stat({ social: 8 }); notify('Class Group', '87 people reacted with laughing faces to your post.'); logd('Posted the professor\'s 1998 ID photo in the group chat'); }
   },
   async returnID() {
@@ -5411,7 +5411,7 @@ const Story = {
     await say('prof', 'My ID! I had to sign 14 forms to enter my own department. Thank you, beta.', 'happy');
     await say('prof', `I will remember this, ${S.name}. Gratitude is very easy.`, 'happy');
     stat({ social: 4 }); S.counters.veryEasy++;
-    logd('Returned Sharma sir\'s lost ID card');
+    logd('Returned Yogi sir\'s lost ID card');
   },
   async danceOff() {
     if (S.flags.danced) { await say({ name: 'Wing B\'s Dancer', look: studentLook(905) }, 'Rematch next Thomso. I\'m practising in the mirror. Every night.'); return; }
@@ -5736,7 +5736,7 @@ const Story = {
     if (ice.state === 'returning') return this.iceReturn();
     if (ice.state === 'challenge') { await say(senior(1), 'Tara is near the {L:chai}. Go! Chapo is getting cold. Chapo doesn\'t get cold. Go anyway.', 'happy'); return; }
     if (ice.state === 'none') return this.icebreak();
-    await say(senior(Rng.int(0, 2)), Rng.pick(['Junior, hostel mein koi problem ho toh batana. Seriously.', 'Mess ki kheer try karna Sunday ko. Life badal jaayegi.', 'Proxy mat lagwana zyada. Sharma sir sab yaad rakhte hain.', 'Thomso mein volunteer karna. Free food, free trauma.']), 'happy');
+    await say(senior(Rng.int(0, 2)), Rng.pick(['Junior, hostel mein koi problem ho toh batana. Seriously.', 'Mess ki kheer try karna Sunday ko. Life badal jaayegi.', 'Proxy mat lagwana zyada. Yogi sir sab yaad rakhte hain.', 'Thomso mein volunteer karna. Free food, free trauma.']), 'happy');
   },
   async iceTara() {
     const ice = S.ice, t = A('tara'), p = PL();
@@ -5765,7 +5765,7 @@ const Story = {
         ]);
         const k = await ask('me', 'Say something memorable. (Not creepy. Memorable.)', lines.map((l) => l[1]));
         const tone = lines[k][0];
-        const react = { charming: ['Okay, that was smooth. Followed back.', 3], awkward: ['Hahaha. I\'ll pretend I didn\'t hear that. Followed anyway.', 1], funny: ['A weak connection! Too real. Okay, you\'re funny.', 2], confident: ['Very easy?! You\'ve been to Sharma sir\'s class. Okay, deal.', 2] }[tone];
+        const react = { charming: ['Okay, that was smooth. Followed back.', 3], awkward: ['Hahaha. I\'ll pretend I didn\'t hear that. Followed anyway.', 1], funny: ['A weak connection! Too real. Okay, you\'re funny.', 2], confident: ['Very easy?! You\'ve been to Yogi sir\'s class. Okay, deal.', 2] }[tone];
         await say(TARA(), react[0], 'happy');
         ice.tara = 'agreed'; ice.taraPts = react[1]; ice.line = tone;
         stat({ social: 3 });
@@ -5907,9 +5907,9 @@ const Story = {
   },
   async evProfNotice() {
     const n = Bag('profnotice', [
-      ['Class Group', 'CR: Sharma sir says "read chapter 3 before next class". Nobody will. Including me.', { acad: 1 }],
+      ['Class Group', 'CR: Yogi sir says "read chapter 3 before next class". Nobody will. Including me.', { acad: 1 }],
       ['Class Group', 'CR: Iyer ma\'am uploaded 40 practice problems. "Optional". Her optional is not optional.', null],
-      ['Course Portal', 'Announcement: Office hours moved to "whenever you find me". — R.K. Sharma', null],
+      ['Course Portal', 'Announcement: Office hours moved to "whenever you find me". — R.K. Yogi', null],
       ['Class Group', 'CR: Sir said today\'s topic will "definitely" come in the final. He says that every class.', { acad: 1 }],
       ['Course Portal', 'Reminder: Assignment 1 is due Saturday 11:59 PM. Late submissions will be "very easily" rejected.', null],
     ]);
@@ -5938,7 +5938,7 @@ const Story = {
     } else if (ev === 'flashmob') {
       const c = await ask('sys', 'A flash mob starts right next to you. They are looking at you to join.', ['Join the flash mob!', 'Film it for the group chat']);
       if (c === 0) { PL().pose = 'dance'; await wait(1.4); PL().pose = 'stand'; stat({ social: 7, energy: -4 }); memory('Joining a random Thomso flash mob'); }
-      else { stat({ social: 3 }); notify('Class Group', 'Your flash mob video: 112 views. 1 is Sharma sir.'); }
+      else { stat({ social: 3 }); notify('Class Group', 'Your flash mob video: 112 views. 1 is Yogi sir.'); }
     } else if (ev === 'mascot') { await say({ name: 'Thomso Mascot', look }, '(The mascot gives you a silent, enthusiastic thumbs up and a hug.)'); stat({ social: 4 }); }
     else {
       const c = await ask({ name: 'Glow-stick Seller', look }, 'Glow sticks! 10 rupees! Pronite mein sabse zyada chamkoge!', [{ t: 'Buy one', dis: S.stats.money < 10 }, 'No thanks']);
@@ -6018,7 +6018,7 @@ const Story = {
     let title, sub;
     if (S.flags.endedEarly) { title = 'Speedrunner (Any%)'; sub = `You ended the run on Day ${S.day + 1}. The semester is still looking for you.`; }
     else if (S.flags.missedEndsem) { title = 'Absent for the Finale'; sub = 'The final happened. You heard it was very easy.'; }
-    else if (hcr.includes('won') && S.proxyCount >= HEADCOUNT.threshold) { title = 'Headcount Houdini'; sub = `${S.proxyCount} proxies, one emergency headcount, zero proof. Sharma sir still wonders.`; }
+    else if (hcr.includes('won') && S.proxyCount >= HEADCOUNT.threshold) { title = 'Headcount Houdini'; sub = `${S.proxyCount} proxies, one emergency headcount, zero proof. Yogi sir still wonders.`; }
     else if (S.proxyCount >= 3 || (S.flags.caught && S.proxyCount >= 1)) { title = 'Professional Proxy Negotiator'; sub = 'Present in two places. Absent in none. Wanted in one.'; }
     else if (gp < 5) { title = 'Backlog Speedrunner'; sub = 'See you in the supplementary exams. Bring snacks.'; }
     else if (gp >= 8.5 && st.social >= 45) { title = 'Topper With a Social Life'; sub = 'A rare species. Spotted at both the library and Pronite.'; }
@@ -6066,9 +6066,9 @@ const Story = {
     const mem = S.memories.slice(-8);
     const rels = [['rahul', 'Rahul'], ['kabir', 'Kabir'], ['priya', 'Priya']].map(([k, n]) => `<div><b class="count" data-v="${Math.max(0, S.rel[k] || 0)}">0</b><span>${n}</span><em>${(S.rel[k] || 0) >= 50 ? 'best friend' : (S.rel[k] || 0) >= 30 ? 'good friend' : (S.rel[k] || 0) >= 10 ? 'friend' : 'it\'s complicated'}</em></div>`).join('');
     const slides = [
-      { cls: 'w-intro', sfx: 'fanfare', html: `<div class="wk">SEMESTER WRAPPED · WEEK ONE</div><h2>${esc(S.name)}, your first week was&hellip; a lot.</h2><p>${persName} · ${S.flags.endedEarly ? `ended on Day ${S.day + 1}` : SEM_DAYS + ' days'} · 1 Thomso · 1 surprise quiz · 1 Sharma sir</p><canvas class="wchar" width="240" height="240" data-pose="dance"></canvas><p class="tap">Press <kbd>E</kbd> or tap Next</p>` },
+      { cls: 'w-intro', sfx: 'fanfare', html: `<div class="wk">SEMESTER WRAPPED · WEEK ONE</div><h2>${esc(S.name)}, your first week was&hellip; a lot.</h2><p>${persName} · ${S.flags.endedEarly ? `ended on Day ${S.day + 1}` : SEM_DAYS + ' days'} · 1 Thomso · 1 surprise quiz · 1 Yogi sir</p><canvas class="wchar" width="240" height="240" data-pose="dance"></canvas><p class="tap">Press <kbd>E</kbd> or tap Next</p>` },
       { cls: 'w-stats', html: `<div class="wk">FINAL STATS</div><h2>How you're leaving the week</h2>${bar('acad', 'Academics')}${bar('att', 'Attendance')}${bar('energy', 'Energy')}${bar('money', 'Money')}${bar('social', 'Social')}<p class="small">Lectures attended: <b>${Object.values(S.lec).filter((v) => v === 'attended' || v === 'late').length}</b> · Proxy attempts: <b>${S.proxyCount}</b> · Headcounts: <b>${hcr.filter((r) => r !== 'cancelled').join(', ') || 'none'}</b></p>` },
-      { cls: 'w-grades', html: `<div class="wk">THE GRADES</div><h2>Report card (unofficial, extremely real)</h2><div class="grades"><div><span>Surprise Quiz</span><b><i class="count" data-v="${q}">0</i>/20</b><em>${grade(q * 5)}</em></div><div><span>Assignment 1</span><b><i class="count" data-v="${as}">0</i>%</b><em>${grade(as)}</em></div><div><span>Final Exam</span><b><i class="count" data-v="${ex}">0</i>%</b><em>${grade(ex)}</em></div></div><div class="sgpa">SGPA <b>${sgpa}</b></div><p class="small">NSO: <b>${nsoOK ? 'Satisfactory' : 'Unsatisfactory'}</b> (${S.nso.sessions} sessions) · Attendance ${st.att}% ${st.att < 75 ? '(a "detention warning" letter is on its way home)' : '(Sharma sir nods. Slightly.)'}</p>` },
+      { cls: 'w-grades', html: `<div class="wk">THE GRADES</div><h2>Report card (unofficial, extremely real)</h2><div class="grades"><div><span>Surprise Quiz</span><b><i class="count" data-v="${q}">0</i>/20</b><em>${grade(q * 5)}</em></div><div><span>Assignment 1</span><b><i class="count" data-v="${as}">0</i>%</b><em>${grade(as)}</em></div><div><span>Final Exam</span><b><i class="count" data-v="${ex}">0</i>%</b><em>${grade(ex)}</em></div></div><div class="sgpa">SGPA <b>${sgpa}</b></div><p class="small">NSO: <b>${nsoOK ? 'Satisfactory' : 'Unsatisfactory'}</b> (${S.nso.sessions} sessions) · Attendance ${st.att}% ${st.att < 75 ? '(a "detention warning" letter is on its way home)' : '(Yogi sir nods. Slightly.)'}</p>` },
       { cls: 'w-sport', html: `<div class="wk">FRIENDSHIPS</div><h2>Your people</h2><div class="fun">${rels}<div><b class="count" data-v="${S.friendTrust}">0</b><span>friend trust</span><em>${S.friendTrust >= 50 ? 'they\'d proxy for you' : 'work on it'}</em></div></div>` },
       { cls: 'w-funny', html: `<div class="wk">ACHIEVEMENTS</div><h2>${ach.length} unlocked</h2><ul class="decs ach">${ach.length ? ach.map((a) => `<li><span>🏆</span><b>${esc(a[1])}</b> — ${esc(a[2])}</li>`).join('') : '<li><span>—</span>None. A quiet, mysterious week.</li>'}</ul>` },
       { cls: 'w-funny', html: `<div class="wk">BY THE NUMBERS</div><h2>Your week, quantified</h2><div class="fun">${funny.map(([l, v, c]) => `<div><b class="count" data-v="${v}">0</b><span>${l}</span><em>${c}</em></div>`).join('')}</div>` },
@@ -6397,7 +6397,7 @@ const Act = {
     const cw = { name: 'Chai Wala', look: studentLook(777), bg: '#7a4a2a' };
     const c = await ask(cw, Bag('chaiwala', ['Garam chai! Adrak wali! 10 rupaye.', 'Chai piyo, tension mat lo. Ya dono karo.', 'Exam ka tension? Chai. Breakup? Chai. Thomso? Do chai.', 'Cutting chai! Half chai, full gossip.']), [{ t: 'One chai, please.', hint: '-3 Money · +5 Energy', dis: S.stats.money < 3 }, 'Just here for the gossip.', 'Leave.']);
     if (c === 0) { await UI.timeSkip('Sipping cutting chai...', 15, 'eat'); stat({ money: -3, energy: 5 }); S.counters.chai++; Tasks.done('side_chai'); if (S.counters.chai === 4) logd('Drank 4+ chais (a lifestyle)'); }
-    else if (c === 1) await say(cw, Bag('chaigossip', ['Suna hai Sharma sir 1998 se "very easy" bol rahe hain.', 'Rahul ke 6 udhaar abhi tak pending hain. 6!', 'Library wali madam ne kal ek bachche ko sirf dekh ke silent kar diya.', 'Thomso mein Meera gaati hai. Poora campus aata hai.', 'NSO wale coach saab subah 5 baje daudte hain. Kyun? Koi nahi jaanta.', 'Seniors bol rahe the icebreaking mein ek junior ne Doordarshan ki tune gaayi. Legend.']));
+    else if (c === 1) await say(cw, Bag('chaigossip', ['Suna hai Yogi sir 1998 se "very easy" bol rahe hain.', 'Rahul ke 6 udhaar abhi tak pending hain. 6!', 'Library wali madam ne kal ek bachche ko sirf dekh ke silent kar diya.', 'Thomso mein Meera gaati hai. Poora campus aata hai.', 'NSO wale coach saab subah 5 baje daudte hain. Kyun? Koi nahi jaanta.', 'Seniors bol rahe the icebreaking mein ek junior ne Doordarshan ki tune gaayi. Legend.']));
   },
   async fountain() {
     if (S.stats.money < 1) { await say('me', 'No coins. Not even for wishes. That\'s tragic.', 'tired'); return; }
@@ -6405,7 +6405,7 @@ const Act = {
     const r = Math.random();
     if (r < 0.15) { await say('sys', 'The coin lands perfectly. You feel... smarter? Probably placebo.'); stat({ acad: 3 }); }
     else if (r < 0.3) { await say('sys', 'A frog jumps out. Then back in. A sign? Of what? Unclear.'); stat({ social: 2 }); }
-    else await say('sys', pick(['You wish for 75% attendance. The fountain gurgles: "No."', 'You wish for an extension. The fountain is not Sharma sir.', 'You wish for Maggi. The fountain is not Pappu Bhaiya either.']));
+    else await say('sys', pick(['You wish for 75% attendance. The fountain gurgles: "No."', 'You wish for an extension. The fountain is not Yogi sir.', 'You wish for Maggi. The fountain is not Pappu Bhaiya either.']));
   },
   async dog() {
     if (S.flags['dog' + S.day]) { await say('sys', 'The dog is still asleep. Respect the dog.'); return; }
@@ -6535,7 +6535,7 @@ const Act = {
     stat({ energy: 2 });
     p.pose = 'stand'; p.y = m.playerSeat.y - 8;
   },
-  async board() { await say('sys', pick(['The board says: "VERY EASY" — underlined three times.', 'Leftover formula on the board. You understand 1 of the 9 symbols.', 'Someone drew a tiny Sharma sir in the corner. He has hair in the drawing.', 'In tiny letters: "it trivially follows" — M.I.'])); },
+  async board() { await say('sys', pick(['The board says: "VERY EASY" — underlined three times.', 'Leftover formula on the board. You understand 1 of the 9 symbols.', 'Someone drew a tiny Yogi sir in the corner. He has hair in the drawing.', 'In tiny letters: "it trivially follows" — M.I.'])); },
   async court() {
     if (DAY().nso && S.time >= NSO_TIME.start - 30 && S.time <= NSO_TIME.start + 30) return this.nso();
     await say('sys', 'The {L:court}. NSO practice and friendly matches happen here in the evening (4–7 PM).');
@@ -6721,7 +6721,7 @@ const Game = {
     if (S.flags.surpriseWake) {
       S.flags.surpriseWake = false;
       AU.sfx('notif'); await wait(0.3); AU.sfx('notif'); shake(2);
-      await say('phone', Rng.pick(['Class Group · CR: GUYS. SURPRISE QUIZ. 8 AM. SHARMA SIR. NOT A JOKE. 🚨', 'Class Group · CR: Sharma sir just emailed: "Quiz at 8 AM today. It will be very easy." PANIC.', 'Hostel Gang · Priya: QUIZ AT 8!!! Wake up wake up wake up']));
+      await say('phone', Rng.pick(['Class Group · CR: GUYS. SURPRISE QUIZ. 8 AM. Yogi SIR. NOT A JOKE. 🚨', 'Class Group · CR: Yogi sir just emailed: "Quiz at 8 AM today. It will be very easy." PANIC.', 'Hostel Gang · Priya: QUIZ AT 8!!! Wake up wake up wake up']));
       p.expr = 'shock'; emote(p, '!!', 1.4);
       await say('me', `${fmtTime(S.time)}. Quiz at 8:00. In ${locName('lecture')}. Okay. Okay okay okay.`, 'shock');
       S.flags.lateSleep = false;
