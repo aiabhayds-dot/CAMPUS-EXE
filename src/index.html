@@ -1,0 +1,85 @@
+<title>CAMPUS.EXE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="CAMPUS.EXE — a top-down campus-life adventure. Seven days, one Thomso, one surprise quiz, infinite proxy requests.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap">
+<style>/*@@CSS@@*/</style>
+
+<canvas id="game" aria-label="CAMPUS.EXE game world"></canvas>
+
+<div id="hud" hidden>
+  <div class="clock"><span id="h-sun" class="sun s0"></span><div><div class="cl1"><b id="h-day">MON</b><span id="h-time">8:00 AM</span></div><div class="cl2"><span id="h-slot">Morning</span> · <span id="h-dayn">Day 1/7</span></div></div><span id="h-phase">Teaching</span></div>
+  <div id="stats"></div>
+  <div id="nextclass" hidden></div>
+  <div id="deadline" hidden></div>
+</div>
+<div id="side" hidden><canvas id="mini" width="240" height="176"></canvas><div id="roomname"></div><div id="obj"></div><div id="mini-tasks"></div><div class="sidebtns"><button id="nb-btn">Notebook <kbd>N</kbd></button><button id="cal-btn">Calendar <kbd>C</kbd></button></div></div>
+<div id="savechip" hidden></div>
+<div id="sprintchip" hidden>⚡ SPRINT</div>
+<div id="chase" hidden><div class="ch-h"><span class="ch-siren"></span>EMERGENCY HEADCOUNT<b id="ch-time">0.0s</b></div><div id="ch-bar"><i></i></div><div id="ch-phase"></div></div>
+<div id="ch-ready" hidden></div>
+<div id="choicecard" class="overlay" hidden><div class="ccbox"><div class="cc-k">THOMSO DILEMMA</div><h3 id="cc-title"></h3><p id="cc-text"></p><div id="cc-opts"></div></div></div>
+<div id="laptop" hidden><div class="lp-box"><div class="lp-bar"><i></i><i></i><i></i><span>assignment1_final_FINAL_v3.py</span></div><div id="lp-grid"></div><div class="lp-reel">📱 You opened a reel. Scrolling...</div></div></div>
+<div id="mg-hud" hidden><div id="mg-title"></div><div id="mg-score"></div><div id="mg-help"></div></div>
+<div id="study" hidden><div class="st-box"><div class="st-h">Flip two cards: match each <b>term</b> with its <b>meaning</b>.</div><div id="st-grid"></div></div></div>
+<div id="notebook" class="overlay book" hidden><div class="nb" id="nb-body"></div></div>
+<div id="planner" class="overlay book" hidden><div class="nb wide" id="pl-body"></div></div>
+<div id="sleepov" hidden><div class="zz">Z<span>z</span><span>z</span></div><div id="sleep-l"></div></div>
+<button id="pause-btn" hidden aria-label="Pause">II</button>
+
+<div id="notifs"></div>
+<div id="loc"></div>
+<div id="hint" hidden></div>
+
+<div id="dlg" hidden>
+  <div class="por"><canvas id="dlg-por" width="120" height="120"></canvas></div>
+  <div class="dbody"><div id="dlg-name"></div><div id="dlg-text"></div><div id="dlg-choices" hidden></div><div id="dlg-next" hidden>&#9660;</div></div>
+</div>
+
+<div id="skip" hidden><div class="clockic"><i></i><i></i></div><div><div id="skip-l"></div><div class="sk2"><b id="skip-t"></b><span id="skip-p"></span></div></div></div>
+
+<div id="card" class="overlay" hidden><div id="card-n"></div><div id="card-d"></div><div id="card-t"></div><div id="card-s"></div></div>
+
+<div id="popup" class="overlay" hidden><div class="pbox"><div id="popup-body"></div><button id="popup-btn">Continue</button></div></div>
+
+<div id="pause" class="overlay" hidden><div class="pmenu"><h2 id="pause-title">PAUSED</h2><div id="pause-info" hidden></div><div id="pause-menu"></div></div></div>
+
+<div id="title" class="overlay">
+  <div class="logo">CAMPUS<span>.EXE</span></div>
+  <p class="tag"><b>Seven days.</b> One Thomso. One surprise quiz. Infinite proxy requests.</p>
+  <p class="tag2">An IIT Roorkee–inspired campus life sim · fictional calendar &amp; characters</p>
+  <div class="tbtns">
+    <button class="tbtn" id="btn-new">New Game</button>
+    <button class="tbtn" id="btn-cont" hidden>Continue</button>
+    <button class="tbtn alt" id="btn-how">How to play</button>
+  </div>
+  <div id="save-info" hidden></div>
+  <div id="how" hidden>
+    <p><kbd>WASD</kbd> / <kbd>Arrows</kbd> walk · <kbd>Shift</kbd> run</p>
+    <p><kbd>E</kbd> / <kbd>Space</kbd> talk, interact, advance · <kbd>1-4</kbd> choices</p>
+    <p><kbd>N</kbd> notebook · <kbd>C</kbd> calendar · <kbd>Esc</kbd> pause / save · <kbd>M</kbd> minimap</p>
+    <p>Seven days: lectures with real roll calls, Day 2 icebreaking with the seniors, Thomso fest week, a surprise 8 AM quiz, an assignment due at 11:59 PM, and the final. Warnings tell you when to leave. Proxy for friends — but more than four, and the professor starts counting heads.</p>
+  </div>
+  <div class="hint2">Best with sound on · Press E to start</div>
+</div>
+
+<div id="create" class="overlay" hidden>
+  <h2>Who are you this semester?</h2>
+  <div class="namebox"><label for="pname">YOUR NAME</label><input id="pname" maxlength="14" placeholder="Type your name" autocomplete="off" spellcheck="false"></div>
+  <div class="perss">
+    <button class="pers" data-p="owl"><canvas width="96" height="96" data-p="owl"></canvas><div><h3>Night Owl</h3><p>Productive at 3 AM. Unconscious at 9 AM.</p><div class="mods"><span class="d">ENERGY &minus;</span><span class="u">SOCIAL +</span></div></div></button>
+    <button class="pers" data-p="topper"><canvas width="96" height="96" data-p="topper"></canvas><div><h3>Topper Wannabe</h3><p>Highlighters in four colours. Friends in zero.</p><div class="mods"><span class="u">ACADEMICS +</span><span class="d">SOCIAL &minus;</span></div></div></button>
+    <button class="pers" data-p="broke"><canvas width="96" height="96" data-p="broke"></canvas><div><h3>Broke but Popular</h3><p>Knows everyone. Owes everyone.</p><div class="mods"><span class="d">MONEY &minus;&minus;</span><span class="u">SOCIAL ++</span></div></div></button>
+  </div>
+  <div class="diff"><span>DIFFICULTY</span><button data-d="relaxed">Relaxed</button><button data-d="standard">Standard</button><em id="diff-note"></em></div>
+  <div class="cbtns"><button class="tbtn alt" id="btn-back" style="width:auto">Back</button><button class="tbtn" id="btn-start" style="width:auto">Start semester &rarr;</button></div>
+</div>
+
+<div id="wrapped" class="overlay" hidden><div id="w-slide" class="w-slide"></div><div class="wnav"><button id="w-prev">Back</button><div id="w-dots"></div><button id="w-next">Next</button></div></div>
+
+<div id="gameover" class="overlay" hidden><canvas id="go-cv" width="480" height="300"></canvas><h1 id="go-title">DEBARRED</h1><p id="go-line"></p><div><button id="go-load">Load last save</button><button id="go-again">Restart</button><button id="go-title-btn">Title</button></div></div>
+
+<div id="touch" hidden><div id="stick"><div id="knob"></div></div><div id="arrows"><button data-k="left">◀</button><button data-k="up">▲</button><button data-k="down">▼</button><button data-k="right">▶</button></div><button id="abtn" aria-label="Interact">A</button></div>
+
+<script>/*@@JS@@*/</script>
